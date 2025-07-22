@@ -1,0 +1,265 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background 0.3s ease;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.title-line {
+  display: block;
+  color: var(--text-white);
+}
+
+.title-line.accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-family: 'Orbitron', monospace;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--gradient-accent);
+  color: var(--text-white);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-white);
+  border: 2px solid var(--accent-violet);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-violet);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.hero-visual {
+  position: relative;
+  height: 500px;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.element {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gradient-accent);
+  opacity: 0.6;
+  animation: float 4s ease-in-out infinite;
+}
+
+.element-1 {
+  width: 20px;
+  height: 20px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.element-2 {
+  width: 15px;
+  height: 15px;
+  top: 60%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.element-3 {
+  width: 25px;
+  height: 25px;
+  bottom: 30%;
+  left: 70%;
+  animation-delay: 2s;
+}
+
+.hero-character {
+  position: absolute;
+  bottom: 0;
+  right: 20%;
+  width: 200px;
+  height: 300px;
+}
+
+.character-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 120px;
+  background: linear-gradient(180deg, var(--accent-violet) 0%, var(--primary-purple) 100%);
+  border-radius: 30px 30px 10px 10px;
+  opacity: 0.8;
+}
+
+.character-silhouette::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background: var(--accent-violet);
+  border-radius: 50%;
+}
+
+.telescope {
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  width: 80px;
+  height: 8px;
+  background: var(--accent-blue);
+  border-radius: 4px;
+  transform: rotate(-30deg);
+  transform-origin: left center;
+}
+
+.telescope::before {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: -6px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-blue);
+  border-radius: 50%;
+  border: 3px solid var(--text-white);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulse 2s infinite;
+}
+
+.scroll-arrow {
+  width: 2px;
+  height: 30px;
+  background: var(--accent-violet);
+  position: relative;
+}
+
+.scroll-arrow::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--accent-violet);
+  border-bottom: 2px solid var(--accent-violet);
+  transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    height: 300px;
+  }
+
+  .hero-character {
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
