@@ -1,19 +1,98 @@
 .about {
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.3) 0%, rgba(45, 27, 105, 0.2) 100%);
+  background: linear-gradient(135deg, 
+    rgba(10, 10, 30, 0.95) 0%, 
+    rgba(25, 15, 55, 0.9) 50%,
+    rgba(15, 25, 65, 0.95) 100%);
   position: relative;
   overflow: hidden;
+  padding: 6rem 0;
+  min-height: 100vh;
 }
 
-.about::before {
-  content: '';
+.stars-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%238b5cf6" opacity="0.3"/><circle cx="80" cy="40" r="0.5" fill="%234a90e2" opacity="0.4"/><circle cx="40" cy="80" r="1.5" fill="%238b5cf6" opacity="0.2"/></svg>') repeat;
-  animation: float 20s linear infinite;
   pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.star-1 {
+  width: 2px;
+  height: 2px;
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  width: 1px;
+  height: 1px;
+  top: 60%;
+  left: 80%;
+  animation-delay: 1s;
+}
+
+.star-3 {
+  width: 3px;
+  height: 3px;
+  top: 80%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  text-align: center;
+  position: relative;
+}
+
+.title-text {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6 0%, #4a90e2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+.title-underline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #8b5cf6, #4a90e2);
+  margin: 1rem auto;
+  border-radius: 50px;
+  position: relative;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(90deg, #8b5cf6, #4a90e2);
+  border-radius: 50px;
+  opacity: 0.3;
+  animation: pulse 2s infinite;
 }
 
 .about-content {
@@ -21,12 +100,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: start;
+  margin-bottom: 4rem;
 }
 
 .about-text {
   opacity: 0;
   transform: translateX(-50px);
-  transition: all 0.8s ease;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .about.animate .about-text {
@@ -38,102 +118,178 @@
   margin-bottom: 3rem;
 }
 
+.story-paragraphs{
+  text-align: justify;
+}
+
 .story-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  background: var(--gradient-accent);
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #4a90e2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+}
+
+.story-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #4a90e2);
+  border-radius: 50px;
 }
 
 .story-paragraph {
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   position: relative;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
+
+.story-paragraph:nth-child(1) { animation-delay: 0.2s; }
+.story-paragraph:nth-child(2) { animation-delay: 0.4s; }
+.story-paragraph:nth-child(3) { animation-delay: 0.6s; }
 
 .story-paragraph::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0.5rem;
-  width: 3px;
+  width: 4px;
   height: 20px;
-  background: var(--gradient-accent);
-  border-radius: 2px;
+  background: linear-gradient(135deg, #8b5cf6, #4a90e2);
+  border-radius: 50px;
 }
 
 .philosophy-section {
   background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 20px;
+  padding: 2.5rem;
+  border-radius: 65% 35% 70% 30% / 40% 60% 40% 60%;
   border: 1px solid rgba(139, 92, 246, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  animation: morphBlob 8s infinite ease-in-out;
+  margin-top: 2rem;
+}
+
+.philosophy-section::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(74, 144, 226, 0.15));
+  border-radius: 65% 35% 70% 30% / 40% 60% 40% 60%;
+  z-index: -1;
+  animation: morphBlob 8s infinite ease-in-out reverse;
 }
 
 .philosophy-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 2rem;
-  color: var(--text-white);
+  color: white;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .philosophy-points {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+  padding: 3rem;
 }
 
 .philosophy-point {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 45% 55% 60% 40% / 35% 45% 55% 65%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  animation: slideInLeft 0.6s ease forwards, morphPoint 6s infinite ease-in-out;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.philosophy-point:nth-child(1) { 
+  animation-delay: 0.8s, 0s; 
+}
+.philosophy-point:nth-child(2) { 
+  animation-delay: 1s, 2s; 
+}
+.philosophy-point:nth-child(3) { 
+  animation-delay: 1.2s, 4s; 
 }
 
 .philosophy-point:hover {
   background: rgba(139, 92, 246, 0.1);
-  transform: translateX(10px);
+  transform: translateX(10px) scale(1.02);
 }
 
 .point-icon {
   font-size: 2rem;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-accent);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(74, 144, 226, 0.3));
   border-radius: 50%;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.icon-symbol {
+  position: relative;
+  z-index: 2;
+}
+
+.icon-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+  animation: rotate 4s linear infinite;
 }
 
 .point-content h4 {
-  color: var(--text-white);
-  font-size: 1.1rem;
+  color: white;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .point-content p {
-  color: var(--text-gray);
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
   line-height: 1.4;
 }
 
 .about-skills {
   opacity: 0;
   transform: translateX(50px);
-  transition: all 0.8s ease 0.3s;
-  position: relative;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
 
 .about.animate .about-skills {
@@ -142,129 +298,437 @@
 }
 
 .skills-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  background: var(--gradient-accent);
+  background: linear-gradient(135deg, #8b5cf6 0%, #4a90e2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-align: center;
+  position: relative;
+}
+
+.skills-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #4a90e2);
+  border-radius: 50px;
 }
 
 .skills-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-.skill-item {
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 60% 40% 70% 30% / 45% 35% 65% 55%;
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
-  font-weight: 600;
-  color: var(--text-white);
-  font-size: 1.1rem;
-}
-
-.skill-percentage {
-  color: var(--accent-violet);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.skill-bar {
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  animation: fadeInUp 0.6s ease forwards, morphCard 10s infinite ease-in-out;
+  position: relative;
+  cursor: pointer;
   overflow: hidden;
-  position: relative;
 }
 
-.skill-progress {
-  height: 100%;
-  background: var(--gradient-accent);
-  border-radius: 10px;
-  transition: width 1.5s ease;
-  position: relative;
+.skill-card:nth-child(1) { animation-delay: 0s, 0s; }
+.skill-card:nth-child(2) { animation-delay: 0.1s, 1s; }
+.skill-card:nth-child(3) { animation-delay: 0.2s, 2s; }
+.skill-card:nth-child(4) { animation-delay: 0.3s, 3s; }
+.skill-card:nth-child(5) { animation-delay: 0.4s, 4s; }
+.skill-card:nth-child(6) { animation-delay: 0.5s, 5s; }
+.skill-card:nth-child(7) { animation-delay: 0.6s, 6s; }
+.skill-card:nth-child(8) { animation-delay: 0.7s, 7s; }
+.skill-card:nth-child(9) { animation-delay: 0.8s, 8s; }
+
+.skill-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-5px) scale(1.02);
 }
 
-.skill-progress::after {
+.skill-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 2s infinite;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(74, 144, 226, 0.05));
+  border-radius: 60% 40% 70% 30% / 45% 35% 65% 55%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.08);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.skill-card:hover .skill-icon {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: scale(1.1);
+}
+
+.skill-icon svg {
+  width: 30px;
+  height: 30px;
+  color: #8b5cf6;
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-icon svg {
+  color: #4a90e2;
+}
+
+.skill-icon-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rotate 3s linear infinite;
+}
+
+.skill-card:hover .skill-icon-glow {
+  opacity: 1;
+}
+
+.skill-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .cosmic-element {
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  width: 150px;
-  height: 150px;
+  bottom: 3rem;
+  right: 3rem;
+  width: 300px;
+  height: 300px;
+  z-index: 1;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: floatCosmic 12s infinite ease-in-out;
 }
 
 .planet {
-  width: 60px;
-  height: 60px;
-  background: var(--gradient-accent);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.4), rgba(74, 26, 107, 0.3));
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
-  animation: pulse 3s infinite;
+  box-shadow: 
+    0 0 40px rgba(139, 92, 246, 0.2),
+    inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+  animation: pulse 4s infinite ease-in-out;
+  backdrop-filter: blur(5px);
+}
+
+.planet-ring {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border: 2px solid rgba(139, 92, 246, 0.1);
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: rotate 8s linear infinite reverse;
 }
 
 .orbit {
-  width: 100%;
-  height: 100%;
-  border: 2px solid rgba(139, 92, 246, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.08);
   border-radius: 50%;
-  position: relative;
-  animation: rotate 10s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.primary-orbit {
+  width: 160px;
+  height: 160px;
+  animation: rotate 15s linear infinite;
+}
+
+.secondary-orbit {
+  width: 220px;
+  height: 220px;
+  animation: rotate 25s linear infinite reverse;
 }
 
 .satellite {
-  width: 12px;
-  height: 12px;
-  background: var(--accent-blue);
   border-radius: 50%;
   position: absolute;
   top: -6px;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px rgba(74, 144, 226, 0.7);
+  backdrop-filter: blur(3px);
+}
+
+.primary-satellite {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.6), rgba(37, 99, 235, 0.4));
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+}
+
+.secondary-satellite {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.5), rgba(217, 119, 6, 0.3));
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+.floating-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: float 8s infinite ease-in-out;
+  backdrop-filter: blur(2px);
+}
+
+.particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.particle-2 { top: 80%; left: 20%; animation-delay: 1.5s; }
+.particle-3 { top: 30%; right: 15%; animation-delay: 3s; }
+.particle-4 { bottom: 40%; right: 25%; animation-delay: 4.5s; }
+.particle-5 { top: 60%; left: 80%; animation-delay: 6s; }
+.particle-6 { bottom: 20%; left: 70%; animation-delay: 7.5s; }
+
+/* Animaciones */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes floatCosmic {
+  0%, 100% { 
+    transform: translate(-50%, -50%) rotate(0deg); 
+    opacity: 0.15; 
   }
-  to {
-    transform: rotate(360deg);
+  50% { 
+    transform: translate(-50%, -50%) rotate(180deg); 
+    opacity: 0.08; 
+  }
+}
+
+@keyframes morphBlob {
+  0%, 100% { 
+    border-radius: 65% 35% 70% 30% / 40% 60% 40% 60%; 
+  }
+  25% { 
+    border-radius: 45% 55% 40% 60% / 65% 35% 75% 25%; 
+  }
+  50% { 
+    border-radius: 75% 25% 55% 45% / 30% 70% 45% 55%; 
+  }
+  75% { 
+    border-radius: 35% 65% 25% 75% / 55% 45% 35% 65%; 
+  }
+}
+
+@keyframes morphCard {
+  0%, 100% { 
+    border-radius: 60% 40% 70% 30% / 45% 35% 65% 55%; 
+  }
+  33% { 
+    border-radius: 40% 60% 50% 50% / 35% 65% 45% 55%; 
+  }
+  66% { 
+    border-radius: 70% 30% 40% 60% / 55% 45% 35% 65%; 
+  }
+}
+
+@keyframes morphPoint {
+  0%, 100% { 
+    border-radius: 45% 55% 60% 40% / 35% 45% 55% 65%; 
+  }
+  50% { 
+    border-radius: 55% 45% 40% 60% / 45% 35% 65% 55%; 
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  
+  .skill-card {
+    padding: 1.5rem 1rem;
   }
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title-text {
+    font-size: 2.5rem;
+  }
+
   .about-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
+  }
+
+  .story-title,
+  .skills-title {
+    font-size: 2rem;
+  }
+
+  .story-paragraph {
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
+
+  .philosophy-section {
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .philosophy-point {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .point-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .cosmic-element {
+    width: 200px;
+    height: 200px;
+    opacity: 0.08;
+    position: relative;
+    margin: 2rem auto 0;
+    right: auto;
+    bottom: auto;
+  }
+
+  .planet {
+    width: 60px;
+    height: 60px;
+  }
+
+  .primary-orbit {
+    width: 120px;
+    height: 120px;
+  }
+
+  .secondary-orbit {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-text {
+    font-size: 2rem;
   }
 
   .story-title,
@@ -272,30 +736,47 @@
     font-size: 1.5rem;
   }
 
-  .story-paragraph {
-    font-size: 1rem;
-  }
-
-  .philosophy-points {
-    gap: 1rem;
-  }
-
-  .philosophy-point {
-    flex-direction: column;
-    text-align: center;
+  .philosophy-section {
     padding: 1.5rem;
   }
 
-  .point-icon {
+  .skill-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .skill-icon {
     width: 50px;
     height: 50px;
-    font-size: 1.5rem;
+  }
+
+  .skill-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
   }
 
   .cosmic-element {
-    position: relative;
-    margin: 2rem auto 0;
-    right: auto;
-    bottom: auto;
+    width: 150px;
+    height: 150px;
+    opacity: 0.05;
+  }
+
+  .planet {
+    width: 40px;
+    height: 40px;
+  }
+
+  .primary-orbit {
+    width: 100px;
+    height: 100px;
+  }
+
+  .secondary-orbit {
+    width: 130px;
+    height: 130px;
   }
 }

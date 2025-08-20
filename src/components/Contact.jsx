@@ -21,13 +21,13 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simular envío del formulario
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-      
+
       setTimeout(() => {
         setSubmitStatus('')
       }, 3000)
@@ -38,44 +38,44 @@ const Contact = () => {
     <section id="contact" className="contact section">
       <div className="container">
         <h2 className="section-title">Conectemos en el Cosmos</h2>
-        
+
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-card">
               <h3 className="info-title">¿Listo para crear algo extraordinario?</h3>
               <p className="info-description">
-                Estoy siempre abierto a nuevas oportunidades y colaboraciones. 
-                Si tienes un proyecto en mente o simplemente quieres charlar 
+                Estoy siempre abierto a nuevas oportunidades y colaboraciones.
+                Si tienes un proyecto en mente o simplemente quieres charlar
                 sobre tecnología, no dudes en contactarme.
               </p>
-              
+
               <div className="contact-methods">
                 <div className="contact-method">
                   <div className="method-icon">📧</div>
                   <div className="method-content">
                     <h4>Email</h4>
-                    <p>hello@portfolio.dev</p>
+                    <p>ardenridsdev@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-method">
                   <div className="method-icon">💼</div>
                   <div className="method-content">
                     <h4>LinkedIn</h4>
-                    <p>linkedin.com/in/portfolio</p>
+                    <p>www.linkedin.com/in/juanandressilvadarin</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-method">
                   <div className="method-icon">🐙</div>
                   <div className="method-content">
                     <h4>GitHub</h4>
-                    <p>github.com/portfolio</p>
+                    <p>github.com/andresdarin</p>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div className="cosmic-decoration">
               <div className="floating-particle particle-1"></div>
               <div className="floating-particle particle-2"></div>
@@ -137,8 +137,8 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className={`form-submit ${isSubmitting ? 'submitting' : ''}`}
                 disabled={isSubmitting}
               >

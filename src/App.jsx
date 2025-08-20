@@ -6,6 +6,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import StarField from './components/StarField'
 import './App.css'
+import Footer from './components/Footer'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -37,9 +38,10 @@ function App() {
       <Header activeSection={activeSection} />
       <main>
         <Hero />
-        <Projects />
         <About />
+        <Projects />
         <Contact />
+        <Footer />
       </main>
     </div>
   )
