@@ -85,7 +85,6 @@ const socialIcons = {
     github: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />,
     linkedin: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></>,
     email: <><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></>,
-    portfolio: <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
 }
 
 // Componente principal Footer
@@ -94,10 +93,15 @@ const Footer = () => {
     const currentYear = new Date().getFullYear()
 
     const socialLinks = [
-        { href: "https://github.com", icon: socialIcons.github, name: "GitHub" },
-        { href: "https://linkedin.com", icon: socialIcons.linkedin, name: "LinkedIn" },
-        { href: "mailto:contacto@ejemplo.com", icon: socialIcons.email, name: "Email" },
-        { href: "#portfolio", icon: socialIcons.portfolio, name: "Portfolio" }
+        { href: "https://github.com/andresdarin", icon: socialIcons.github, name: "GitHub" },
+        { href: "https://www.linkedin.com/in/juanandressilvadarin", icon: socialIcons.linkedin, name: "LinkedIn" },
+        {
+            href: "https://wa.me/59892117228",
+            icon: (
+                <path d="M16.88 14.45c-.25-.12-1.48-.73-1.71-.82-.23-.1-.39-.12-.56.12-.17.25-.66.82-.81.99-.15.17-.29.19-.54.07-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.73-.14-.25-.02-.38.1-.5.1-.1.23-.26.34-.39.11-.13.15-.22.23-.37.08-.14.04-.26-.02-.37-.07-.12-.56-1.35-.77-1.84-.2-.49-.41-.42-.56-.43-.14-.01-.3-.01-.46-.01s-.37.06-.56.26c-.19.2-.73.71-.73 1.74s.75 2.02.86 2.17c.12.15 1.48 2.25 3.6 3.15.5.22.88.35 1.18.45.5.16.95.14 1.31.08.4-.06 1.23-.5 1.4-.98.16-.48.16-.89.11-.97-.06-.09-.23-.14-.48-.25z" />
+            ),
+            name: "WhatsApp"
+        },
     ]
 
     const navLinks = [

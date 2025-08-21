@@ -35,8 +35,7 @@ const Hero = () => {
               <span className="title-line accent">Experiencias Digitales</span>
             </h1>
             <p className="hero-subtitle">
-              Desarrollador Frontend especializado en crear experiencias web
-              extraordinarias que conectan la creatividad con la tecnología
+              ¡Hola! Soy Andrés y me dedico a transformar ideas en experiencias digitales que inspiran, conectan y convierten objetivos en realidades.
             </p>
             <div className="hero-buttons">
               <button

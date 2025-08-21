@@ -6,10 +6,10 @@ const Header = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   const navItems = [
-    { id: 'home', label: 'Inicio', icon: '🏠' },
-    { id: 'projects', label: 'Proyectos', icon: '🚀' },
-    { id: 'about', label: 'Sobre mí', icon: '👨‍🚀' },
-    { id: 'contact', label: 'Contacto', icon: '📡' }
+    { id: 'home', label: 'Inicio', icon: '' },
+    { id: 'about', label: 'Sobre mí', icon: '' },
+    { id: 'projects', label: 'Proyectos', icon: '' },
+    { id: 'contact', label: 'Contacto', icon: '' }
   ]
 
   // Detectar scroll para cambiar el estilo del header
