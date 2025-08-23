@@ -120,6 +120,7 @@ const Footer = () => {
             <div className="footer-stars-background">
                 {[...Array(30)].map((_, i) => (
                     <div key={i} className={`footer-star footer-star-${(i % 3) + 1}`}></div>
+
                 ))}
             </div>
             {/* Call to Action */}
@@ -129,13 +130,14 @@ const Footer = () => {
                     <p className="cta-text">
                         Trabajemos juntos para convertir tu visión en una experiencia digital memorable.
                     </p>
+                    <FooterCosmicElement />
                     <a href="#contact" className="cta-button">
                         <span>Hablemos</span>
                         <div className="button-glow"></div>
                     </a>
                 </div>
-                <FooterCosmicElement />
             </div>
+
             {/* Divider */}
             <div className="footer-divider"></div>
             <div className="footer-container">

@@ -300,6 +300,10 @@ height: 15rem;
   flex: 1;
   position: relative;
   z-index: 2;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .cta-title {
@@ -364,7 +368,7 @@ height: 15rem;
 }
 
 .footer-cosmic-element {
-  position: relative;
+  position: absolute;
   width: 150px;
   height: 150px;
   opacity: 0.3;

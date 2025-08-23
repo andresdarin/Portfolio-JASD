@@ -4,33 +4,18 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 10, 26, 0.85);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  background: transparent;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  padding: 1rem 0;
 }
 
 .header.scrolled {
-  background: rgba(10, 10, 26, 0.95);
-  border-bottom-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: transparent;
 }
 
 .header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.header.scrolled::before {
-  opacity: 1;
+  display: none;
 }
 
 .container {
@@ -43,7 +28,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 0;
+  padding: 0.5rem 0;
   position: relative;
   z-index: 2;
 }
@@ -59,7 +44,7 @@
 }
 
 .logo:hover {
-  transform: scale(1.15);
+  transform: scale(1.05);
 }
 
 .logo-container {
@@ -69,11 +54,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(74, 144, 226, 0.1));
+  animation: morphBlob 6s ease-in-out infinite;
 }
 
 .logo-image {
-  width: 100%;
-  height: 4rem;
+  width: 70%;
+  height: 70%;
   object-fit: contain;
   filter: brightness(1.1) contrast(1.1);
   transition: all 0.3s ease;
@@ -83,20 +71,20 @@
 
 .logo:hover .logo-image {
   filter: brightness(1.3) contrast(1.2);
-  transform: rotate(5deg);
+  transform: rotate(3deg);
 }
 
 .logo-glow {
   position: absolute;
-  top: -10px;
-  left: -10px;
-  right: -10px;
-  bottom: -10px;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
   background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
-  border-radius: 50%;
+  border-radius: 50% 60% 70% 40% / 60% 50% 80% 40%;
   opacity: 0;
   transition: opacity 0.3s ease;
-  animation: pulse 3s infinite ease-in-out;
+  animation: morphGlow 8s ease-in-out infinite;
 }
 
 .logo:hover .logo-glow {
@@ -115,41 +103,38 @@
   letter-spacing: 2px;
 }
 
-.logo-text::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -10%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.logo:hover .logo-text::after {
-  opacity: 1;
-  animation: shimmer 1.5s ease-in-out;
-}
-
-/* Navegación mejorada */
+/* Navegación estilo blob minimalista */
 .nav {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
   align-items: center;
   position: relative;
+  background: rgba(10, 10, 26, 0.85);
+  backdrop-filter: blur(20px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  animation: morphNav 12s ease-in-out infinite;
+  overflow: visible;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-.nav-background {
+.nav::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.02);
-  border-radius: 30px;
-  border: 1px solid rgba(139, 92, 246, 0.1);
-  backdrop-filter: blur(5px);
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50% 60% 70% 40% / 60% 50% 80% 40%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: morphNavGlow 12s ease-in-out infinite;
+}
+
+.nav:hover::before {
+  opacity: 1;
 }
 
 .nav-item {
@@ -157,17 +142,17 @@
   border: none;
   color: rgba(255, 255, 255, 0.7);
   font-family: 'Orbitron', monospace;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+  padding: 0.6rem 1rem;
+  border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   animation: fadeInDown 0.6s ease forwards;
   animation-delay: var(--delay);
   opacity: 0;
@@ -176,80 +161,77 @@
 .nav-item::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(74, 144, 226, 0.8));
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.8) 0%, rgba(74, 144, 226, 0.8) 100%);
+  border-radius: 50%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(-50%, -50%);
   z-index: -1;
 }
 
 .nav-item:hover::before,
 .nav-item.active::before {
-  left: 0;
+  width: 150%;
+  height: 150%;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morphButton 2s ease-in-out infinite;
 }
 
 .nav-item:hover,
 .nav-item.active {
   color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
+  background: rgba(139, 92, 246, 0.1);
 }
 
 .nav-icon {
   font-size: 1rem;
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .nav-item:hover .nav-icon {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.2) rotate(8deg);
 }
 
 .nav-label {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-.nav-indicator {
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #8b5cf6, #4a90e2);
-  border-radius: 1px;
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.nav-item.active .nav-indicator {
-  width: 80%;
-}
-
-/* Botón hamburguesa mejorado */
+/* Botón hamburguesa estilo blob */
 .menu-toggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   cursor: pointer;
-  padding: 0.8rem;
-  border-radius: 12px;
+  padding: 1rem;
+  border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   z-index: 3;
+  backdrop-filter: blur(10px);
+  animation: morphToggle 8s ease-in-out infinite;
 }
 
 .menu-toggle:hover {
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(139, 92, 246, 0.15);
+  transform: scale(1.1);
+  border-radius: 40% 60% 50% 40% / 50% 60% 40% 50%;
 }
 
 .hamburger-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 25px;
-  height: 20px;
+  width: 22px;
+  height: 18px;
   position: relative;
 }
 
@@ -257,13 +239,14 @@
   width: 100%;
   height: 3px;
   background: linear-gradient(90deg, #8b5cf6, #4a90e2);
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
 }
 
 .menu-toggle.active .hamburger-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
+  border-radius: 20px;
 }
 
 .menu-toggle.active .hamburger-line:nth-child(2) {
@@ -273,25 +256,27 @@
 
 .menu-toggle.active .hamburger-line:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+  border-radius: 20px;
 }
 
 .menu-toggle-glow {
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
-  border-radius: 50%;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   opacity: 0;
   transition: opacity 0.3s ease;
+  animation: morphToggleGlow 6s ease-in-out infinite;
 }
 
 .menu-toggle:hover .menu-toggle-glow {
   opacity: 1;
 }
 
-/* Estrellas de fondo en el header */
+/* Partículas blob flotantes */
 .header-stars {
   position: absolute;
   top: 0;
@@ -304,97 +289,101 @@
 
 .header-star {
   position: absolute;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 4s infinite ease-in-out;
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.6), rgba(74, 144, 226, 0.6));
+  border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
+  animation: floatBlob 6s infinite ease-in-out;
 }
 
 .header-star-1 {
-  width: 1px;
-  height: 1px;
-  top: 30%;
-  left: 20%;
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  left: 15%;
   animation-delay: 0s;
 }
 
 .header-star-2 {
-  width: 2px;
-  height: 2px;
-  top: 70%;
-  left: 80%;
-  animation-delay: 1s;
-}
-
-.header-star-3 {
-  width: 1px;
-  height: 1px;
-  top: 20%;
-  left: 60%;
+  width: 12px;
+  height: 12px;
+  top: 60%;
+  left: 85%;
   animation-delay: 2s;
 }
 
-/* Partículas del menú móvil */
-.nav-particles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.header-star-3 {
+  width: 6px;
+  height: 6px;
+  top: 40%;
+  left: 70%;
+  animation-delay: 4s;
 }
 
-.nav-open .nav-particles {
-  opacity: 1;
+/* Animaciones blob */
+@keyframes morphBlob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  33% { border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%; }
+  66% { border-radius: 40% 60% 70% 30% / 40% 30% 60% 70%; }
 }
 
-.nav-particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #8b5cf6;
-  border-radius: 50%;
-  animation: float 3s infinite ease-in-out;
+@keyframes morphGlow {
+  0%, 100% { border-radius: 50% 60% 70% 40% / 60% 50% 80% 40%; }
+  33% { border-radius: 80% 20% 60% 40% / 40% 70% 30% 60%; }
+  66% { border-radius: 30% 70% 40% 60% / 70% 40% 50% 60%; }
 }
 
-.nav-particle-1 { top: 20%; left: 10%; animation-delay: 0s; }
-.nav-particle-2 { top: 60%; left: 85%; animation-delay: 0.5s; }
-.nav-particle-3 { top: 80%; left: 20%; animation-delay: 1s; }
-.nav-particle-4 { top: 40%; left: 70%; animation-delay: 1.5s; }
-.nav-particle-5 { top: 10%; left: 50%; animation-delay: 2s; }
-.nav-particle-6 { top: 90%; left: 60%; animation-delay: 2.5s; }
+@keyframes morphNav {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 50% 50% 40% 60% / 40% 50% 60% 50%; }
+  50% { border-radius: 70% 30% 60% 40% / 50% 70% 30% 50%; }
+  75% { border-radius: 40% 60% 50% 50% / 60% 40% 50% 60%; }
+}
 
-/* Animaciones */
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+@keyframes morphNavGlow {
+  0%, 100% { border-radius: 50% 60% 70% 40% / 60% 50% 80% 40%; }
+  33% { border-radius: 70% 30% 40% 60% / 30% 70% 60% 40%; }
+  66% { border-radius: 40% 60% 50% 50% / 70% 30% 50% 70%; }
+}
+
+@keyframes morphButton {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
+}
+
+@keyframes morphToggle {
+  0%, 100% { border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%; }
+  33% { border-radius: 40% 60% 50% 40% / 50% 60% 40% 50%; }
+  66% { border-radius: 60% 40% 60% 50% / 40% 50% 60% 50%; }
+}
+
+@keyframes morphToggleGlow {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 70% 60% 40% / 70% 30% 40% 60%; }
+}
+
+@keyframes floatBlob {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+    border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
+  }
+  33% { 
+    transform: translateY(-8px) scale(1.1); 
+    border-radius: 40% 50% 60% 50% / 50% 60% 40% 60%;
+  }
+  66% { 
+    transform: translateY(-4px) scale(0.9); 
+    border-radius: 60% 40% 50% 60% / 40% 60% 50% 40%;
+  }
 }
 
 @keyframes fadeInDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.1); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
 }
 
 /* Responsivo */
@@ -408,8 +397,8 @@
   }
 
   .logo-container {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 
   .nav {
@@ -418,16 +407,18 @@
     left: -2rem;
     right: -2rem;
     background: rgba(10, 10, 26, 0.98);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1rem;
-    transform: translateY(-20px);
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+    transform: translateY(-30px);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid rgba(139, 92, 246, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    border-radius: 0 0 60% 40% / 0 0 30% 70%;
+    animation: none;
   }
 
   .nav-open {
@@ -436,7 +427,7 @@
     visibility: visible;
   }
 
-  .nav-background {
+  .nav::before {
     display: none;
   }
 
@@ -447,20 +438,25 @@
   .nav-item {
     width: 100%;
     text-align: center;
-    padding: 1.2rem;
+    padding: 1.5rem;
     justify-content: center;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    margin-bottom: 0.5rem;
+    border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
   }
 
   .nav-item:last-child {
     margin-bottom: 0;
   }
 
+  .nav-item:hover {
+    border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+  }
+
   .nav-icon {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .nav-label {
@@ -479,18 +475,18 @@
   }
 
   .logo-container {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
 
   .nav {
     left: -1rem;
     right: -1rem;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .nav-item {
-    padding: 1rem;
+    padding: 1.2rem;
     font-size: 0.9rem;
   }
 }

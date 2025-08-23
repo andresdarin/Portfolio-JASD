@@ -1,62 +1,75 @@
+// npm i @emailjs/browser
 import { useState, useRef, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState('')
+  const [submitStatus, setSubmitStatus] = useState('') // 'success' | 'error' | ''
   const sectionRef = useRef(null)
+  const formRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  // Inicializamos EmailJS con la PUBLIC KEY (opcional si también la pasás en sendForm)
+  useEffect(() => {
+    emailjs.init('hP34TYsN0YL1W6G2y') // <-- tu public key
+  }, [])
 
   // Observer para animaciones de entrada
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.2 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
 
-    // Simular envío del formulario
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+    try {
+      const SERVICE_ID = 'service_1ebvrbq';
+      const AUTOREPLY_TEMPLATE = 'template_1l2sne8';
+      const CONTACT_TEMPLATE = 'template_bvqfvcm';
+      const PUBLIC_KEY = 'hP34TYsN0YL1W6G2y';
 
-      setTimeout(() => {
-        setSubmitStatus('')
-      }, 4000)
-    }, 2000)
-  }
+      const formData = {
+        name: formRef.current.name.value,       // coincide con {{name}}
+        email: formRef.current.email.value,     // coincide con {{email}}
+        subject: formRef.current.subject.value, // coincide con {{subject}}
+        message: formRef.current.message.value, // coincide con {{message}}
+        time: new Date().toLocaleString()      // coincide con {{time}}
+      };
+
+
+      console.log('formData', formData)
+
+      // 1️⃣ Correo para mí
+      await emailjs.send(SERVICE_ID, CONTACT_TEMPLATE, formData, PUBLIC_KEY);
+
+      // 2️⃣ Auto-reply para el usuario
+      await emailjs.send(SERVICE_ID, AUTOREPLY_TEMPLATE, formData, PUBLIC_KEY);
+
+      setSubmitStatus('success');
+      formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(''), 4000);
+    }
+  };
+
 
   return (
     <section id="contact" ref={sectionRef} className={`contact section ${isVisible ? 'animate' : ''}`}>
-      {/* Elementos de fondo modernos */}
       <div className="contact-background">
         <div className="floating-shape shape-1"></div>
         <div className="floating-shape shape-2"></div>
@@ -73,7 +86,6 @@ const Contact = () => {
         </div>
 
         <div className="contact-content">
-          {/* Tarjeta de información */}
           <div className="info-module glass-module">
             <div className="module-header">
               <h3 className="module-title">Contacto Directo</h3>
@@ -101,11 +113,6 @@ const Contact = () => {
                     <span className="channel-label">Email</span>
                     <span className="channel-value">ardenridsdev@gmail.com</span>
                   </div>
-                  <div className="channel-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
                 </a>
 
                 <a href="https://www.linkedin.com/in/juanandressilvadarin" target="_blank" rel="noopener noreferrer" className="channel-link">
@@ -120,11 +127,6 @@ const Contact = () => {
                     <span className="channel-label">LinkedIn</span>
                     <span className="channel-value">/juanandressilvadarin</span>
                   </div>
-                  <div className="channel-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </div>
                 </a>
 
                 <a href="https://github.com/andresdarin" target="_blank" rel="noopener noreferrer" className="channel-link">
@@ -136,11 +138,6 @@ const Contact = () => {
                   <div className="channel-details">
                     <span className="channel-label">GitHub</span>
                     <span className="channel-value">@andresdarin</span>
-                  </div>
-                  <div className="channel-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
                   </div>
                 </a>
               </div>
@@ -154,30 +151,21 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Formulario de contacto */}
           <div className="form-module glass-module">
             <div className="module-header">
               <h3 className="module-title">Enviar Mensaje</h3>
               <div className="module-badge">Nuevo</div>
             </div>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
               <div className="form-grid">
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">
                     <span className="label-text">Nombre</span>
                   </label>
                   <div className="input-container">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="modern-input"
-                      required
-                      placeholder="Tu nombre completo"
-                    />
+                    {/* <- Cambié a name="name" para que coincida con tu template {{name}} */}
+                    <input type="text" id="name" name="name" className="modern-input" required placeholder="Tu nombre completo" />
                     <div className="input-underline"></div>
                   </div>
                 </div>
@@ -187,16 +175,8 @@ const Contact = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <div className="input-container">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="modern-input"
-                      required
-                      placeholder="tu.email@ejemplo.com"
-                    />
+                    {/* Mantengo from_email porque en tu template usas {{from_email}} */}
+                    <input type="email" id="email" name="email" className="modern-input" required placeholder="tu.email@ejemplo.com" />
                     <div className="input-underline"></div>
                   </div>
                 </div>
@@ -207,16 +187,7 @@ const Contact = () => {
                   <span className="label-text">Asunto</span>
                 </label>
                 <div className="input-container">
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="modern-input"
-                    required
-                    placeholder="¿De qué quieres hablar?"
-                  />
+                  <input type="text" id="subject" name="subject" className="modern-input" required placeholder="¿De qué quieres hablar?" />
                   <div className="input-underline"></div>
                 </div>
               </div>
@@ -226,25 +197,12 @@ const Contact = () => {
                   <span className="label-text">Mensaje</span>
                 </label>
                 <div className="input-container">
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="modern-textarea"
-                    rows="4"
-                    required
-                    placeholder="Cuéntame sobre tu proyecto o idea..."
-                  ></textarea>
+                  <textarea id="message" name="message" className="modern-textarea" rows="4" required placeholder="Cuéntame sobre tu proyecto o idea..."></textarea>
                   <div className="input-underline"></div>
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
-                disabled={isSubmitting}
-              >
+              <button type="submit" className={`submit-button ${isSubmitting ? 'submitting' : ''}`} disabled={isSubmitting}>
                 <span className="button-content">
                   {isSubmitting ? (
                     <>
@@ -275,6 +233,11 @@ const Contact = () => {
                     <h4>¡Mensaje enviado!</h4>
                     <p>Te responderé en menos de 24 horas.</p>
                   </div>
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="error-message">
+                  <p>Error al enviar el mensaje. Intenta nuevamente.</p>
                 </div>
               )}
             </form>

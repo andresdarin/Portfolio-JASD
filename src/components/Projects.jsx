@@ -38,22 +38,33 @@ const Projects = () => {
       id: 1,
       title: "Rifacil",
       description: "Plataforma de rifas en línea con sistema de pagos integrado y gestión de sorteos. Interfaz intuitiva y segura para creadores y participantes.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Mercado Pago API", "Chart.js", "Multer", "JWT", "React Router DOM"],
+
       image: "https://images.pexels.com/photos/4386433/pexels-photo-4386433.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "#",
-      github: "#"
+      demo: "https://rifacil.netlify.app/",
+      github: "https://github.com/andresdarin/Rifacil"
     },
     {
       id: 2,
-      title: "AhorrApp",
-      description: "Aplicación móvil para gestión de finanzas personales con seguimiento de gastos, metas de ahorro y reportes visuales interactivos.",
-      technologies: ["React Native", "Firebase", "Chart.js", "CSS3"],
-      image: "https://images.pexels.com/photos/4386158/pexels-photo-4386158.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "#",
-      github: "#"
+      title: "ProRoller",
+      description: "Landing page moderna para empresa de rodillos industriales con diseño responsivo, modal y formularios interactivos.",
+      technologies: ["Angular 16", "Angular Material", "TypeScript", "RxJS", "jQuery", "LightSlider", "HammerJS", "SweetAlert2", "Angular Router"],
+      image: "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800",
+      demo: "https://proroller.uy/",
+      github: "https://github.com/andresdarin/Pro-Roller",
+      isLive: true
     },
     {
       id: 3,
+      title: "AhorrApp",
+      description: "Aplicación móvil para gestión de finanzas personales con seguimiento de gastos, metas de ahorro y reportes visuales interactivos.",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Chart.js", "TailwindCSS", "React Router DOM"],
+      image: "https://images.pexels.com/photos/4386158/pexels-photo-4386158.jpeg?auto=compress&cs=tinysrgb&w=800",
+      demo: "#",
+      github: "https://github.com/andresdarin/AhorrApp"
+    },
+    {
+      id: 4,
       title: "Cozy Cups",
       description: "E-commerce especializado en tés y cafés premium con sistema de recomendaciones y suscripciones personalizadas.",
       technologies: ["Vue.js", "Laravel", "MySQL", "AWS"],
@@ -62,32 +73,24 @@ const Projects = () => {
       github: "#"
     },
     {
-      id: 4,
+      id: 5,
       title: "Tienda Virtual",
       description: "Solución completa de comercio electrónico con panel de administración, múltiples métodos de pago y gestión de inventario.",
-      technologies: ["React", "Express", "MongoDB", "PayPal API"],
+      technologies: ["HTML5", "CSS3", "JavaScript"],
       image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "#",
-      github: "#"
-    },
-    {
-      id: 5,
-      title: "ToDo List",
-      description: "Aplicación de productividad con funciones avanzadas: categorías, recordatorios, colaboración y sincronización multiplataforma.",
-      technologies: ["JavaScript", "Firebase", "CSS3", "PWA"],
-      image: "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "#",
-      github: "#"
+      demo: "https://tech-dev-store.netlify.app/",
+      github: "https://github.com/andresdarin/tienda-virtual-ropa"
     },
     {
       id: 6,
-      title: "Landing Page ProRoller",
-      description: "Landing page moderna para empresa de rodillos industriales con diseño responsivo, animaciones y formularios interactivos.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
-      image: "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "#",
-      github: "#"
+      title: "Petstagram",
+      description: "Red social web para amantes de las mascotas, donde los usuarios pueden subir fotos, seguir otros perfiles y ver publicaciones recientes.",
+      technologies: ["React", "TailwindCSS", "Vite", "React Router DOM", "Node.js", "Express", "MongoDB", "JWT", "Multer", "Bcrypt", "Moment"],
+      image: "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=800",
+      demo: "https://proyecto7.netlify.app/",
+      github: "https://github.com/andresdarin/proyecto7"
     }
+
   ];
 
   const toggleShowAllProjects = () => {
@@ -124,10 +127,12 @@ const Projects = () => {
                 <img src={project.image} alt={project.title} />
                 <div className="project-overlay">
                   <div className="project-links">
-                    <a href={project.demo} className="project-link">
-                      <span>Demo</span>
+                    <a href={project.demo} className="project-link" target="_blank" rel="noopener noreferrer">
+                      <span>{project.isLive ? "Live" : "Demo"}</span>
                     </a>
-                    <a href={project.github} className="project-link">
+
+                    <a href={project.github} className="project-link" target="_blank"
+                      rel="noopener noreferrer">
                       <span>GitHub</span>
                     </a>
                   </div>
