@@ -619,3 +619,199 @@ height: 15rem;
     border-radius: 60% 40% 70% 30% / 55% 45% 35% 65%; 
   }
 }
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+  
+  .logo-image-footer {
+    height: 6rem;
+  }
+  
+  .footer-cosmic-element {
+    position: absolute;
+    margin: 2rem auto;
+    opacity: 0.2;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .cta-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Tablets verticales y móviles grandes */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 0;
+  }
+  
+  .footer-container {
+    padding: 0 1.5rem;
+  }
+  
+  .footer-cta {
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .cta-title {
+    font-size: 1.8rem;
+  }
+  
+  .cta-text {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .footer-cosmic-element {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    position: static;
+    margin: 1rem auto;
+  }
+  
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+  
+  .footer-nav-links,
+  .footer-social-links {
+    align-items: center;
+  }
+  
+  .logo-image-footer {
+    height: 5rem;
+  }
+  
+  .footer-divider {
+    margin: 0 auto 3rem;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 1rem;
+  }
+  
+  .footer-cta {
+    padding: 3rem 1.5rem;
+    border-radius: 20px;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-text {
+    font-size: 0.9rem;
+  }
+  
+  .cta-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .footer-cosmic-element {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .footer-main {
+    gap: 2rem;
+  }
+  
+  .logo-image-footer {
+    height: 4rem;
+  }
+  
+  .footer-section-title {
+    font-size: 1.1rem;
+  }
+  
+  .social-link {
+    padding: 0.6rem;
+    border-radius: 8px;
+  }
+  
+  .social-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .social-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .social-name {
+    font-size: 0.85rem;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+  
+  .tech-text {
+    font-size: 0.8rem;
+  }
+  
+  .footer-divider {
+    width: calc(100% - 2rem);
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .footer-cta {
+    padding: 2.5rem 1rem;
+  }
+  
+  .cta-title {
+    font-size: 1.3rem;
+  }
+  
+  .cta-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  
+  .footer-cosmic-element {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .logo-image-footer {
+    height: 3.5rem;
+  }
+  
+  .social-link {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}

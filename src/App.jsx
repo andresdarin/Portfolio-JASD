@@ -5,11 +5,18 @@ import Projects from './components/Projects'
 import About from './components/About'
 import Contact from './components/Contact'
 import StarField from './components/StarField'
-import './App.css'
 import Footer from './components/Footer'
+import './App.css'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [loading, setLoading] = useState(true)
+  const [showScrollTop, setShowScrollTop] = useState(false) // ← para flecha
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000)
+    return () => clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +33,26 @@ function App() {
           }
         }
       }
+
+      // Mostrar flecha si el scroll es mayor a 300px
+      setShowScrollTop(window.scrollY > 300)
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  if (loading) {
+    return (
+      <div id="loading-screen">
+        <img src="/public/image.png" alt="JASD Logo" className="loading-logo" />
+      </div>
+    )
+  }
 
   return (
     <div className="App">
@@ -43,6 +65,13 @@ function App() {
         <Contact />
         <Footer />
       </main>
+
+      {/* Flecha scroll-to-top */}
+      {showScrollTop && (
+        <button className="scroll-top" onClick={scrollToTop} aria-label="Scroll to top">
+          ↑
+        </button>
+      )}
     </div>
   )
 }

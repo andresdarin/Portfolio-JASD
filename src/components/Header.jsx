@@ -4,6 +4,7 @@ import './Header.css'
 const Header = ({ activeSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const navItems = [
     { id: 'home', label: 'Inicio', icon: '' },
@@ -14,85 +15,137 @@ const Header = ({ activeSection }) => {
 
   // Detectar scroll para cambiar el estilo del header
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Detectar tamaño de pantalla para cambiar logo
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768)
+    handleResize() // detectar al cargar
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' })
     setIsMenuOpen(false)
   }
 
+  // Cerrar menú al hacer click fuera
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest('.header') && !event.target.closest('.mobile-menu')) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuOpen])
+
+  // Evitar scroll del body cuando el menú está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
+  // Logo según tamaño de pantalla
+  const logoSrc = isMobile ? 'public/Jasd-round.png' : 'public/image.png'
+
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="container">
-        <div className="header-content">
-          {/* Logo con imagen */}
-          <div className="logo" onClick={() => scrollToSection('home')}>
-            <div className="logo-container">
-              <img
-                src="/src/assets/image.png"
-                alt="JASD Logo"
-                className="logo-image"
-              />
-              <div className="logo-glow"></div>
+    <>
+      <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="container">
+          <div className="header-content">
+            {/* Logo con imagen */}
+            <div className="logo" onClick={() => scrollToSection('home')}>
+              <div className="logo-container">
+                <img
+                  src={logoSrc}
+                  alt="JASD Logo"
+                  className="logo-image"
+                />
+                <div className="logo-glow"></div>
+              </div>
             </div>
+
+            {/* Navegación desktop */}
+            <nav className="nav">
+              {navItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+                  onClick={() => scrollToSection(item.id)}
+                  style={{ '--delay': `${index * 0.1}s` }}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-label">{item.label}</span>
+                </button>
+              ))}
+            </nav>
+
+            {/* Botón del menú hamburguesa */}
+            <button
+              className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div className="hamburger-container">
+                <span className="hamburger-line"></span>
+                <span className="hamburger-line"></span>
+                <span className="hamburger-line"></span>
+              </div>
+              <div className="menu-toggle-glow"></div>
+            </button>
+          </div>
+        </div>
+
+        {/* Estrellas de fondo en el header */}
+        <div className="header-stars">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className={`header-star header-star-${(i % 3) + 1}`}></div>
+          ))}
+        </div>
+      </header>
+
+      {/* Menú móvil épico */}
+      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(false)}>
+        <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`} onClick={(e) => e.stopPropagation()}>
+          <div className="mobile-menu-header">
+            <h2 className="mobile-menu-title">Nav</h2>
           </div>
 
-          {/* Navegación */}
-          <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
-            <div className="nav-background"></div>
+          <nav className="mobile-menu-nav">
             {navItems.map((item, index) => (
               <button
                 key={item.id}
-                className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+                className={`mobile-nav-item ${activeSection === item.id ? 'active' : ''}`}
                 onClick={() => scrollToSection(item.id)}
-                style={{ '--delay': `${index * 0.1}s` }}
+                style={{ animationDelay: `${(index + 1) * 0.1}s` }}
               >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-label">{item.label}</span>
-                <div className="nav-indicator"></div>
+                <span className="mobile-nav-icon">{item.icon}</span>
+                <span className="mobile-nav-label">{item.label}</span>
               </button>
             ))}
 
-            {/* Partículas decorativas en el menú móvil */}
-            <div className="nav-particles">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className={`nav-particle nav-particle-${i + 1}`}></div>
+            {/* Partículas decorativas */}
+            <div className="mobile-menu-particles">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="mobile-particle"></div>
               ))}
             </div>
           </nav>
-
-          {/* Botón del menú hamburguesa mejorado */}
-          <button
-            className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="hamburger-container">
-              <span className="hamburger-line"></span>
-              <span className="hamburger-line"></span>
-              <span className="hamburger-line"></span>
-            </div>
-            <div className="menu-toggle-glow"></div>
-          </button>
         </div>
       </div>
-
-      {/* Estrellas de fondo en el header */}
-      <div className="header-stars">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className={`header-star header-star-${(i % 3) + 1}`}></div>
-        ))}
-      </div>
-    </header>
+    </>
   )
 }
 
