@@ -147,7 +147,7 @@ const Footer = () => {
                         <div className="footer-brand">
                             <div className="footer-logo">
                                 <img
-                                    src="/src/assets/jasd_purple.png"
+                                    src="/src/assets/image.png"
                                     alt="JASD Logo"
                                     className="logo-image-footer"
                                 />

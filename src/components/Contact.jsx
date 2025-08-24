@@ -40,11 +40,11 @@ const Contact = () => {
       const PUBLIC_KEY = 'hP34TYsN0YL1W6G2y';
 
       const formData = {
-        name: formRef.current.name.value,       // coincide con {{name}}
-        email: formRef.current.email.value,     // coincide con {{email}}
-        subject: formRef.current.subject.value, // coincide con {{subject}}
-        message: formRef.current.message.value, // coincide con {{message}}
-        time: new Date().toLocaleString()      // coincide con {{time}}
+        name: formRef.current.name.value,
+        email: formRef.current.email.value,
+        subject: formRef.current.subject.value,
+        message: formRef.current.message.value,
+        time: new Date().toLocaleString()
       };
 
 
@@ -97,21 +97,23 @@ const Contact = () => {
             </div>
 
             <div className="info-content">
-              <p className="info-description">
-                Estoy disponible para nuevos proyectos, colaboraciones o simplemente para conversar sobre tecnología y desarrollo.
-              </p>
 
               <div className="contact-channels">
-                <a href="mailto:ardenridsdev@gmail.com" className="channel-link">
+                <a
+                  href="https://wa.me/59892117228"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="channel-link"
+                >
                   <div className="channel-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                      <polyline points="22,6 12,13 2,6" />
+                      <path d="M20 3.5H4a2.5 2.5 0 0 0-2.5 2.5v12A2.5 2.5 0 0 0 4 20.5h16a2.5 2.5 0 0 0 2.5-2.5v-12A2.5 2.5 0 0 0 20 3.5z" />
+                      <path d="M7 17l1-4 3 3 4-7" />
                     </svg>
                   </div>
                   <div className="channel-details">
-                    <span className="channel-label">Email</span>
-                    <span className="channel-value">ardenridsdev@gmail.com</span>
+                    <span className="channel-label">WhatsApp</span>
+                    <span className="channel-value">(+598) 92 117 228</span>
                   </div>
                 </a>
 

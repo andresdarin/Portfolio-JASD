@@ -3,14 +3,32 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="src/assets/Logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JASD</title>
+
+  <!-- Preload del logo -->
+  <link rel="preload" href="/Logo.png" as="image" />
+  <link rel="icon" type="image/png" href="/Logo.png" />
+
+  <!-- Preconnect y preload de Google Fonts (Orbitron) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap"
+    as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Prefetch de rutas futuras (ejemplo About.jsx) -->
+  <link rel="prefetch" href="/src/pages/About.jsx" as="script">
+
+  <!-- Estilos globales opcionales -->
+  <!-- <link rel="stylesheet" href="/styles/global.css"> -->
 </head>
 
 <body>
   <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Script principal de React -->
+  <script type="module" src="/src/main.jsx" defer></script>
 </body>
 
 </html>

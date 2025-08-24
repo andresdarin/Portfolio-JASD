@@ -70,7 +70,7 @@ const Projects = () => {
       technologies: ["Vue.js", "Laravel", "MySQL", "AWS"],
       image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "#",
-      github: "#"
+      github: "https://github.com/andresdarin/Cozy-Cups"
     },
     {
       id: 5,
@@ -87,8 +87,8 @@ const Projects = () => {
       description: "Red social web para amantes de las mascotas, donde los usuarios pueden subir fotos, seguir otros perfiles y ver publicaciones recientes.",
       technologies: ["React", "TailwindCSS", "Vite", "React Router DOM", "Node.js", "Express", "MongoDB", "JWT", "Multer", "Bcrypt", "Moment"],
       image: "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "https://proyecto7.netlify.app/",
-      github: "https://github.com/andresdarin/proyecto7"
+      demo: "#",
+      github: "https://github.com/andresdarin/Petstagram-front-end"
     }
 
   ];

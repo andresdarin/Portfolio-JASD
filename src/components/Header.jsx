@@ -38,7 +38,7 @@ const Header = ({ activeSection }) => {
           <div className="logo" onClick={() => scrollToSection('home')}>
             <div className="logo-container">
               <img
-                src="/src/assets/jasd_white.png"
+                src="/src/assets/image.png"
                 alt="JASD Logo"
                 className="logo-image"
               />

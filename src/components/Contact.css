@@ -201,7 +201,10 @@
 
 /* Módulo de información */
 .info-module {
-  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .info-content {
@@ -365,12 +368,11 @@
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  gap: 14px;
 }
 
 .form-group {
-  margin-bottom: 28px;
+  margin-bottom: 15px;
 }
 
 .form-label {

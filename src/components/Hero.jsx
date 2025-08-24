@@ -31,7 +31,7 @@ const Hero = () => {
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              <span className="title-line">Arquitecto de</span>
+              <span className="title-line">Creador de</span>
               <span className="title-line accent">Experiencias Digitales</span>
             </h1>
             <p className="hero-subtitle">
