@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import StarField from './StarField';
 import './Projects.css';
 
 // Hook personalizado para animaciones de intersección
@@ -42,7 +43,8 @@ const Projects = () => {
 
       image: "https://images.pexels.com/photos/4386433/pexels-photo-4386433.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "https://rifacil.netlify.app/",
-      github: "https://github.com/andresdarin/Rifacil"
+      github: "https://github.com/andresdarin/Rifacil",
+      inDevelopment: true
     },
     {
       id: 2,
@@ -52,7 +54,8 @@ const Projects = () => {
       image: "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "https://proroller.uy/",
       github: "https://github.com/andresdarin/Pro-Roller",
-      isLive: true
+      isLive: true,
+      inDevelopment: true
     },
     {
       id: 3,
@@ -61,7 +64,8 @@ const Projects = () => {
       technologies: ["React", "Node.js", "Express", "MongoDB", "Mongoose", "JWT", "Chart.js", "TailwindCSS", "React Router DOM"],
       image: "https://images.pexels.com/photos/4386158/pexels-photo-4386158.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "#",
-      github: "https://github.com/andresdarin/AhorrApp"
+      github: "https://github.com/andresdarin/AhorrApp",
+      inDevelopment: true
     },
     {
       id: 4,
@@ -70,7 +74,8 @@ const Projects = () => {
       technologies: ["Vue.js", "Laravel", "MySQL", "AWS"],
       image: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "#",
-      github: "https://github.com/andresdarin/Cozy-Cups"
+      github: "https://github.com/andresdarin/Cozy-Cups",
+      inDevelopment: true
     },
     {
       id: 5,
@@ -79,7 +84,8 @@ const Projects = () => {
       technologies: ["HTML5", "CSS3", "JavaScript"],
       image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "https://tech-dev-store.netlify.app/",
-      github: "https://github.com/andresdarin/tienda-virtual-ropa"
+      github: "https://github.com/andresdarin/tienda-virtual-ropa",
+      inDevelopment: true
     },
     {
       id: 6,
@@ -88,7 +94,8 @@ const Projects = () => {
       technologies: ["React", "TailwindCSS", "Vite", "React Router DOM", "Node.js", "Express", "MongoDB", "JWT", "Multer", "Bcrypt", "Moment"],
       image: "https://images.pexels.com/photos/1234567/pexels-photo-1234567.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "#",
-      github: "https://github.com/andresdarin/Petstagram-front-end"
+      github: "https://github.com/andresdarin/Petstagram-front-end",
+      inDevelopment: true
     }
 
   ];
@@ -124,20 +131,38 @@ const Projects = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="project-image">
-                <img src={project.image} alt={project.title} />
+                {project.inDevelopment ? (
+                  <div className="project-placeholder">
+                    <StarField /> {/* Estrellas animadas */}
+                    <span>Miniatura en desarrollo</span>
+                  </div>
+                ) : (
+                  <img src={project.image} alt={project.title} />
+                )}
+
                 <div className="project-overlay">
                   <div className="project-links">
-                    <a href={project.demo} className="project-link" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.demo}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <span>{project.isLive ? "Live" : "Demo"}</span>
                     </a>
 
-                    <a href={project.github} className="project-link" target="_blank"
-                      rel="noopener noreferrer">
+                    <a
+                      href={project.github}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <span>GitHub</span>
                     </a>
                   </div>
                 </div>
               </div>
+
 
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>

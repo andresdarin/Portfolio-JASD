@@ -551,6 +551,10 @@
 .particle-5 { top: 60%; left: 80%; animation-delay: 6s; }
 .particle-6 { bottom: 20%; left: 70%; animation-delay: 7.5s; }
 
+.skill-card:last-child {
+  display: none;
+}
+
 /* Animaciones */
 @keyframes twinkle {
   0%, 100% { opacity: 0.3; transform: scale(1); }
@@ -654,6 +658,9 @@
 }
 
 @media (max-width: 768px) {
+  .hero-text{
+    padding-top: 4rem;
+  }
   .about {
     padding: 4rem 0;
   }
@@ -727,6 +734,10 @@
   .secondary-orbit {
     width: 160px;
     height: 160px;
+  }
+
+    .skill-card:last-child {
+    display: flex;
   }
 }
 

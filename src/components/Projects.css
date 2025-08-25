@@ -371,6 +371,38 @@
   animation: rotate 8s linear infinite;
 }
 
+.project-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(100, 50, 150, 0.8);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.project-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px; /* mismo tamaño que las imágenes */
+  width: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(150, 80, 200, 0.6));
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* Animaciones */
 @keyframes projectTwinkle {
   0%, 100% { opacity: 0.3; transform: scale(1); }

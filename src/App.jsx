@@ -11,13 +11,24 @@ import './App.css'
 function App() {
   const [activeSection, setActiveSection] = useState('home')
   const [loading, setLoading] = useState(true)
-  const [showScrollTop, setShowScrollTop] = useState(false) // ← para flecha
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
+  // Loader: se desactiva después de 2s
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000)
     return () => clearTimeout(timer)
   }, [])
 
+  // Resetear overflow cuando el loader termina
+  useEffect(() => {
+    if (!loading) {
+      document.body.style.overflow = '' // vuelve a usar tu CSS
+    } else {
+      document.body.style.overflow = 'hidden' // opcional: bloquear scroll mientras carga
+    }
+  }, [loading])
+
+  // Scroll y sección activa
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'projects', 'about', 'contact']
@@ -49,7 +60,7 @@ function App() {
   if (loading) {
     return (
       <div id="loading-screen">
-        <img src="/public/image.png" alt="JASD Logo" className="loading-logo" />
+        <img src="/image.png" alt="JASD Logo" className="loading-logo" />
       </div>
     )
   }
@@ -60,8 +71,8 @@ function App() {
       <Header activeSection={activeSection} />
       <main>
         <Hero />
-        <About />
         <Projects />
+        <About />
         <Contact />
         <Footer />
       </main>
