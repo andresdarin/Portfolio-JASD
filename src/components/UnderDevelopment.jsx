@@ -57,16 +57,6 @@ const UnderDevelopment = () => {
                 <div className="under-development-content">
                     {/* Developer character */}
                     <div className="developer-character">
-                        <div className="laptop">
-                            <div className="laptop-screen">
-                                <div className="code-symbol">{'</>'}</div>
-                            </div>
-                            <div className="laptop-base"></div>
-                        </div>
-
-                        <div className="developer-silhouette">
-                            <div className="developer-head"></div>
-                        </div>
 
                         {/* Floating code symbols */}
                         <div className="code-float code-float-1">{'{'}</div>
@@ -82,7 +72,7 @@ const UnderDevelopment = () => {
 
                     {/* Subtitle */}
                     <p className="under-development-subtitle">
-                        Este proyecto está siendo creado con mucho cariño y dedicación.
+                        Este proyecto está siendo creado con mucho café y dedicación.
                         <br />
                         <span className="accent-text">¡Pronto estará listo para sorprenderte!</span>
                     </p>
@@ -126,18 +116,10 @@ const UnderDevelopment = () => {
                     {/* Buttons */}
                     <div className="under-development-buttons">
                         <button className="btn btn-primary" onClick={goBack}>
-                            ← Volver a Proyectos
-                        </button>
-                        <button className="btn btn-secondary" onClick={handleNotify}>
-                            Notificarme cuando esté listo
+                            ← Volver a la Pagina Principal
                         </button>
                     </div>
                 </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="scroll-indicator">
-                <div className="scroll-arrow"></div>
             </div>
         </section>
     )

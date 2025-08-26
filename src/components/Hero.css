@@ -212,16 +212,23 @@
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  animation: pulse 2s infinite;
+  width: 25px;
+  height: 45px;
+  border: 2px solid var(--accent-violet);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5px;
 }
 
-.scroll-arrow {
-  width: 2px;
-  height: 30px;
+.scroll-dot {
+  width: 4px;
+  height: 4px;
   background: var(--accent-violet);
-  position: relative;
+  border-radius: 50%;
+  animation: scroll 2s infinite;
 }
-
 .scroll-arrow::after {
   content: '';
   position: absolute;
@@ -232,6 +239,21 @@
   border-right: 2px solid var(--accent-violet);
   border-bottom: 2px solid var(--accent-violet);
   transform: rotate(45deg);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(15px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* ----------------------- */
