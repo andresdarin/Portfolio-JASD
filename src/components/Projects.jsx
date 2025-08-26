@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import StarField from './StarField';
 import './Projects.css';
 
@@ -30,6 +31,7 @@ const useIntersectionAnimation = (threshold = 0.2) => {
 };
 
 const Projects = () => {
+  const navigate = useNavigate(); // Hook para navegación
   const [activeProject, setActiveProject] = useState(0);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [sectionRef, isVisible] = useIntersectionAnimation(0.2);
@@ -40,7 +42,6 @@ const Projects = () => {
       title: "Rifacil",
       description: "Plataforma de rifas en línea con sistema de pagos integrado y gestión de sorteos. Interfaz intuitiva y segura para creadores y participantes.",
       technologies: ["React", "Node.js", "Express", "MongoDB", "Mercado Pago API", "Chart.js", "Multer", "JWT", "React Router DOM"],
-
       image: "https://images.pexels.com/photos/4386433/pexels-photo-4386433.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "https://rifacil.netlify.app/",
       github: "https://github.com/andresdarin/Rifacil",
@@ -55,7 +56,7 @@ const Projects = () => {
       demo: "https://proroller.uy/",
       github: "https://github.com/andresdarin/Pro-Roller",
       isLive: true,
-      inDevelopment: true
+      inDevelopment: false // Este está live, así que no redirije
     },
     {
       id: 3,
@@ -85,7 +86,7 @@ const Projects = () => {
       image: "https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg?auto=compress&cs=tinysrgb&w=800",
       demo: "https://tech-dev-store.netlify.app/",
       github: "https://github.com/andresdarin/tienda-virtual-ropa",
-      inDevelopment: true
+      inDevelopment: false // Este funciona, no redirije
     },
     {
       id: 6,
@@ -97,8 +98,18 @@ const Projects = () => {
       github: "https://github.com/andresdarin/Petstagram-front-end",
       inDevelopment: true
     }
-
   ];
+
+  // Función para manejar el clic en Demo
+  const handleDemoClick = (project) => {
+    if (project.inDevelopment) {
+      // Si está en desarrollo, navegar al componente UnderDevelopment
+      navigate('/under-development');
+    } else {
+      // Si no está en desarrollo, abrir el demo en una nueva pestaña
+      window.open(project.demo, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   const toggleShowAllProjects = () => {
     setShowAllProjects(!showAllProjects);
@@ -142,14 +153,17 @@ const Projects = () => {
 
                 <div className="project-overlay">
                   <div className="project-links">
-                    <a
-                      href={project.demo}
-                      className="project-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      className="project-link project-button"
+                      onClick={() => handleDemoClick(project)}
                     >
-                      <span>{project.isLive ? "Live" : "Demo"}</span>
-                    </a>
+                      <span>
+                        {project.inDevelopment
+                          ? "En Desarrollo"
+                          : (project.isLive ? "Live" : "Demo")
+                        }
+                      </span>
+                    </button>
 
                     <a
                       href={project.github}
@@ -162,7 +176,6 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-
 
               <div className="project-content">
                 <h3 className="project-title">{project.title}</h3>

@@ -139,23 +139,112 @@
   gap: 1rem;
 }
 
+/* Estilos blob/burbuja para todos los botones de proyecto */
 .project-link {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.8rem 1.5rem;
   background: linear-gradient(135deg, #8b5cf6, #4a90e2);
   color: white;
   text-decoration: none;
-  border-radius: 50px;
   font-weight: 600;
   font-size: 0.9rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  
+  /* Blob shape usando border-radius */
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: morph 6s ease-in-out infinite;
+}
+
+.project-link::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #8b5cf6, #4a90e2, #8b5cf6);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: morph 6s ease-in-out infinite reverse;
 }
 
 .project-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  animation-duration: 2s;
+}
+
+.project-link:hover::before {
+  opacity: 0.7;
+}
+
+.project-link:focus {
+  outline: none;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.project-link:focus-visible {
+  outline: none;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+}
+
+.project-link:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.project-link span {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Animación de morfeo para el blob */
+  @keyframes morph {
+      0% {
+          border-radius: 55% 45% 40% 60% / 50% 40% 60% 50%;
+      }
+      25% {
+          border-radius: 45% 55% 60% 40% / 45% 55% 40% 55%;
+      }
+      50% {
+          border-radius: 50% 50% 45% 55% / 48% 58% 42% 52%;
+      }
+      75% {
+          border-radius: 48% 52% 42% 58% / 55% 45% 58% 42%;
+      }
+      100% {
+          border-radius: 55% 45% 40% 60% / 50% 40% 60% 50%;
+      }
+  }
+
+/* Efecto de ondas dentro del blob */
+.project-link::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.project-link:hover::after {
+  width: 100%;
+  height: 100%;
 }
 
 .project-content {
