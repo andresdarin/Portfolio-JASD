@@ -354,3 +354,63 @@
   }
 }
 
+/* ----------------------- */
+/* iPad / Tablet */
+/* ----------------------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 2.5rem;
+    text-align: center; /* Centrar el texto */
+    justify-items: center; /* Centrar contenido en la columna */
+    padding: 0 2rem;
+  }
+
+  .hero-title {
+    font-size: 3rem; /* Ajustar tamaño del título */
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+    justify-content: center; /* Centrar botones */
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Hero visual */
+  .hero-visual {
+    height: 400px;
+  }
+
+  /* Personaje */
+  .hero-character {
+    right: 50%;
+    transform: translateX(50%);
+    width: 160px;
+    height: 240px;
+  }
+
+  /* Floating elements */
+  .element-1 {
+    top: 18%;
+    left: 12%;
+  }
+
+  .element-2 {
+    top: 58%;
+    right: 18%;
+  }
+
+  .element-3 {
+    bottom: 28%;
+    left: 68%;
+  }
+}
+
+

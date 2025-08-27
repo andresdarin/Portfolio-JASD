@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import StarField from './StarField';
 import './Projects.css';
+import ProRoller from '../assets/ProRoller-SC.webp';
 
 // Hook personalizado para animaciones de intersección
 const useIntersectionAnimation = (threshold = 0.2) => {
@@ -38,6 +39,17 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 2,
+      title: "ProRoller",
+      description: "Landing page moderna para empresa de rodillos industriales con diseño responsivo, modal y formularios interactivos.",
+      technologies: ["Angular 16", "Angular Material", "TypeScript", "RxJS", "jQuery", "LightSlider", "HammerJS", "SweetAlert2", "Angular Router"],
+      image: ProRoller,
+      demo: "https://proroller.uy/",
+      github: "https://github.com/andresdarin/Pro-Roller",
+      isLive: true,
+      inDevelopment: false // Este está live, así que no redirije
+    },
+    {
       id: 1,
       title: "Rifacil",
       description: "Plataforma de rifas en línea con sistema de pagos integrado y gestión de sorteos. Interfaz intuitiva y segura para creadores y participantes.",
@@ -47,17 +59,7 @@ const Projects = () => {
       github: "https://github.com/andresdarin/Rifacil",
       inDevelopment: true
     },
-    {
-      id: 2,
-      title: "ProRoller",
-      description: "Landing page moderna para empresa de rodillos industriales con diseño responsivo, modal y formularios interactivos.",
-      technologies: ["Angular 16", "Angular Material", "TypeScript", "RxJS", "jQuery", "LightSlider", "HammerJS", "SweetAlert2", "Angular Router"],
-      image: "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800",
-      demo: "https://proroller.uy/",
-      github: "https://github.com/andresdarin/Pro-Roller",
-      isLive: true,
-      inDevelopment: false // Este está live, así que no redirije
-    },
+
     {
       id: 3,
       title: "AhorrApp",
